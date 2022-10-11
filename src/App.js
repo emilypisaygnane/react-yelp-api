@@ -7,6 +7,7 @@ function App() {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [zip, setZip] = useState('98682');
+  const [search, setSearch] = useState('');
 
   // TODO -- add state for zip / search and add event listeners to the inputs
 
@@ -22,7 +23,7 @@ function App() {
   // TODO -- add event for button click to handle calling fetchBusinesses with zip / search
 
   const handleSearch = async () => {
-    const data = await fetchBusinesses(zip);
+    const data = await fetchBusinesses(zip, search);
     setBusinesses(data);
   };
 
@@ -32,11 +33,19 @@ function App() {
       <div className="query-form">
         <div className="form-control">
           <label>Zip:</label>
-          <input type="text" placeholder="zip" value={zip} onChange={(e) => setZip(e.target.value)}/>
+          <input type="text" 
+            placeholder="zip" 
+            value={zip} 
+            onChange={(e) => setZip(e.target.value)}
+          />
         </div>
         <div className="form-control">
           <label>Query:</label>
-          <input type="text" placeholder="Search..." />
+          <input type="text" 
+            placeholder="Search..." 
+            value={search} 
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </div>
         <button onClick={handleSearch}>Search</button>
       </div>
