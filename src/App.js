@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchBusinesses('./netlify/functions/yelp');
+      const data = await fetchBusinesses();
       setBusinesses(data);
       setLoading(false);
     };
@@ -22,8 +22,7 @@ function App() {
   // TODO -- add event for button click to handle calling fetchBusinesses with zip / search
 
   const handleSearch = async () => {
-    const resp = await fetch ('./netlify/functions/yelp?zip=${zip}');
-    const data = await resp.json();
+    const data = await fetchBusinesses(zip);
     setBusinesses(data);
   };
 
