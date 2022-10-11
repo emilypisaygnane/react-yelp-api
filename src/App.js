@@ -6,7 +6,7 @@ import { fetchBusinesses } from './services/yelp';
 function App() {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [zip, setZip] = useState('98682');
+  const [zip, setZip] = useState('');
   const [search, setSearch] = useState('');
 
   // TODO -- add state for zip / search and add event listeners to the inputs
@@ -33,15 +33,17 @@ function App() {
       <div className="query-form">
         <div className="form-control">
           <label>Zip:</label>
-          <input type="text" 
-            placeholder="zip" 
+          <input 
+            type="text" 
+            placeholder="Zip" 
             value={zip} 
             onChange={(e) => setZip(e.target.value)}
           />
         </div>
         <div className="form-control">
           <label>Query:</label>
-          <input type="text" 
+          <input 
+            type="text" 
             placeholder="Search..." 
             value={search} 
             onChange={(e) => setSearch(e.target.value)}

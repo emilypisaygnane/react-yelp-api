@@ -4,6 +4,7 @@ require('dotenv').config({ path: `.env.development.local` });
 const handler = async (event) => {
   const zip = event.queryStringParameters.zip;
   const search = event.queryStringParameters.search;
+  
   try {
     const resp = await fetch (
       `https://api.yelp.com/v3/businesses/search?categories=restaurants&location=${zip}&term=${search}`, 
@@ -19,7 +20,8 @@ const handler = async (event) => {
       body: JSON.stringify(data.businesses),
     };
   } catch (e) {
-
+    // eslint-disable-next-line no-console
+    console.log(e);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Failed to fetch data' }),
